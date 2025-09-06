@@ -1,6 +1,5 @@
 import json
 
-
 from src.category import Category
 from src.product import Product
 

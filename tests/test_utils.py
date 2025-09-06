@@ -1,7 +1,7 @@
 import os
 
-from src.utils import create_objects_from_json, read_json
 from src.category import Category
+from src.utils import create_objects_from_json, read_json
 
 
 def test_read_json(data_dir: str) -> None:
