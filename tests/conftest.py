@@ -1,3 +1,5 @@
+import os
+
 import pytest
 
 from src.category import Category
@@ -21,3 +23,10 @@ def category(product_phone: Product, product_tv: Product) -> Category:
         "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
         [product_phone, product_tv],
     )
+
+
+@pytest.fixture
+def data_dir() -> str:
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    data_dir = os.path.join(current_dir, "..", "data")
+    return data_dir
