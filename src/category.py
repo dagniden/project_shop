@@ -3,9 +3,6 @@ from src.product import Product
 
 class Category:
     """Класс с категориями продуктов"""
-    name: str
-    description: str
-    products: list[Product]
 
     category_count = 0
     product_count = 0
