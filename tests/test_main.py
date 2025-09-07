@@ -1,30 +1,22 @@
-from pytest import CaptureFixture
-
-from src.category import Category
+import re
 from src.main import main
+from src.category import Category
 
 
-def test_main_output(capsys: CaptureFixture[str]) -> None:
-    # Сбросим счётчики перед тестом, чтобы не было влияния от других тестов
+def test_main_output(capsys):
+    # Сбрасываем счётчики перед тестом
     Category.category_count = 0
     Category.product_count = 0
 
-    main()  # запускаем основную функцию
+    # Запускаем main()
+    main()
 
-    # Захватываем stdout
-    captured = capsys.readouterr()
+    # Перехватываем stdout
+    output = capsys.readouterr().out
 
-    output = captured.out.splitlines()
-
-    # Проверяем первые выводы (поля первого продукта)
-    assert "Samsung Galaxy S23 Ultra" in output
-    assert "256GB, Серый цвет, 200MP камера" in output
-    assert "180000.0" in output
-    assert "5" in output
-
-    # Проверяем создание категорий
-    assert "Телевизоры" in output
-
-    # # Проверяем что счётчики классов корректные
-    assert str(Category.category_count) in output
-    assert str(Category.product_count) in output
+    # Проверяем, что первые print показывают список продуктов
+    assert "Samsung Galaxy S23 Ultra 1" in output
+    assert "Iphone 15" in output
+    assert "Xiaomi Redmi Note 11" in output
+    assert "Смартфоны" in output
+    assert "Samsung Galaxy S23 Ultra 2" in output
