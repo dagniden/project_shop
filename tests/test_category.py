@@ -9,7 +9,8 @@ def test_category(category: Category) -> None:
     assert category.category_count == 1
     assert category.product_count == 2
 
-def test_add_product(product_phone, category: Category):
+
+def test_add_product(product_phone: Product, category: Category) -> None:
     # Сброс счетчиков
     Category.category_count = 0
     Category.product_count = 0
