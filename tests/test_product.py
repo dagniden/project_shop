@@ -30,3 +30,6 @@ def test_price_setter(product_phone: Product) -> None:
     product_phone.price = 150000
     with patch("builtins.input", return_value="y"):
         assert product_phone.price == 150000
+
+def test_product_str(product_phone: Product) -> None:
+    assert str(product_phone) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 1 шт."
