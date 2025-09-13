@@ -21,4 +21,4 @@ def test_add_product(product_phone: Product, category: Category) -> None:
 
 
 def test_category_str(category: Category) -> None:
-    assert str(category) == "Телевизоры, количество продуктов: 3 шт."
+    assert str(category) == "Телевизоры, количество продуктов: 8 шт."
