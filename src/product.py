@@ -10,6 +10,12 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self) -> str:
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other: Product) -> float:
+        return self.__price * self.quantity + other.__price * other.quantity
+
     @classmethod
     def new_product(cls, new_product: dict, product_list: list[Product] | None = None) -> Product:
         if product_list:
@@ -28,11 +34,12 @@ class Product:
 
     @price.setter
     def price(self, new_value: float) -> None:
-        if new_value > 0:
-            self.__price = new_value
-        elif new_value < self.__price:
+        if new_value < 0:
+            print("Цена не должна быть нулевая или отрицательная")
+
+        if new_value < self.__price:
             user_input = input("Подтвердите понижение цены товара (y/n): ")
             if user_input.lower() == "y":
                 self.__price = new_value
         else:
-            print("Цена не должна быть нулевая или отрицательная")
+            self.__price = new_value
