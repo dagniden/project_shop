@@ -10,6 +10,9 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.\n"
+
     @classmethod
     def new_product(cls, new_product: dict, product_list: list[Product] | None = None) -> Product:
         if product_list:
