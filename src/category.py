@@ -26,4 +26,4 @@ class Category:
         result = []
         for item in self.__products:
             result.append(str(item))
-        return "\n".join(result)
+        return result
