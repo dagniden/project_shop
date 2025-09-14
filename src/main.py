@@ -1,12 +1,12 @@
 from src.category import Category
-from src.product import Product
-from src.smartphone import Smartphone
 from src.lawngrass import LawnGrass
+from src.smartphone import Smartphone
 
 
 def main() -> None:
-    smartphone1 = Smartphone("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, 95.5,
-                             "S23 Ultra", 256, "Серый")
+    smartphone1 = Smartphone(
+        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, 95.5, "S23 Ultra", 256, "Серый"
+    )
     smartphone2 = Smartphone("Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space")
     smartphone3 = Smartphone("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, 90.3, "Note 11", 1024, "Синий")
 
@@ -67,7 +67,7 @@ def main() -> None:
     except TypeError:
         print("Возникла ошибка TypeError при попытке сложения")
     else:
-        print("Не возникла ошибка TypeError при попытке сложения")
+        print(f"Не возникла ошибка TypeError при попытке сложения: {invalid_sum=}")
 
     category_smartphones = Category("Смартфоны", "Высокотехнологичные смартфоны", [smartphone1, smartphone2])
     category_grass = Category("Газонная трава", "Различные виды газонной травы", [grass1, grass2])
@@ -83,7 +83,7 @@ def main() -> None:
     except TypeError:
         print("Возникла ошибка TypeError при добавлении не продукта")
     else:
-        print("Не возникла ошибка TypeError при добавлении не продукта")
+        print(f"Не возникла ошибка TypeError при добавлении не продукта: {category_grass=}")
 
 
 if __name__ == "__main__":
