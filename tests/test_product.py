@@ -26,7 +26,27 @@ def test_new_product(product_phone: Product) -> None:
     assert product_phone.price == 200000.0
 
 
-def test_price_setter(product_phone: Product) -> None:
-    product_phone.price = 150000
+def test_price_setter_accept_lower_price(product_phone: Product) -> None:
+    assert product_phone.price == 180000.0
+
     with patch("builtins.input", return_value="y"):
-        assert product_phone.price == 150000
+        product_phone.price = 150000
+
+    assert product_phone.price == 150000
+
+
+def test_price_setter_denied_lower_price(product_phone: Product) -> None:
+    assert product_phone.price == 180000.0
+
+    with patch("builtins.input", return_value="n"):
+        product_phone.price = 150000
+
+    assert product_phone.price == 180000.0
+
+
+def test_product_str(product_phone: Product) -> None:
+    assert str(product_phone) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 1 шт."
+
+
+def test_product_add(product_phone: Product) -> None:
+    assert (product_phone + product_phone) == 360000.0
