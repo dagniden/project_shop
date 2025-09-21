@@ -8,9 +8,8 @@ class Product(BaseProduct, MixinLog):
     def __init__(self, name: str, description: str, price: float, quantity: int):
         """Инициализирует продукт с именем, описанием, ценой и количеством."""
         super().__init__(name, description, quantity)
-
         self.__price = price
-        # print(super().__repr__())
+        print(super().__repr__())
 
     def __str__(self) -> str:
         """Возвращает строковое представление продукта."""
