@@ -1,7 +1,8 @@
+from src.mixinlog import MixinLog
 from src.product import Product
 
 
-class LawnGrass(Product):
+class LawnGrass(Product, MixinLog):
     def __init__(
         self,
         name: str,

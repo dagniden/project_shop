@@ -1,12 +1,11 @@
 from abc import ABC, abstractmethod
+from typing import Any
 
 
 class BaseProduct(ABC):
     """Класс для представления продукта."""
 
+    @classmethod
     @abstractmethod
-    def __init__(self, name: str, description: str, quantity: int):
-        """Инициализирует продукт с именем, описанием, ценой и количеством."""
-        self.name = name
-        self.description = description
-        self.quantity = quantity
+    def new_product(cls, new_product: dict, product_list: list | None = None) -> Any:
+        pass
