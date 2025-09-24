@@ -10,8 +10,8 @@ class Product(BaseProduct, MixinLog):
         """Инициализирует продукт с именем, описанием, ценой и количеством."""
         self.name = name
         self.description = description
-        self.quantity = quantity
         self.__price = price
+        self.quantity = quantity
         super().__init__()
 
     def __str__(self) -> str:
