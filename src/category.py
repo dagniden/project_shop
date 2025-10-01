@@ -35,3 +35,10 @@ class Category:
         for item in self.__products:
             result.append(str(item))
         return result
+
+    def middle_price(self):
+        total_price = sum([p.price for p in self.__products])
+        try:
+            return round(total_price / self.product_count, 2)
+        except ZeroDivisionError:
+            return 0
