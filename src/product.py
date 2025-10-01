@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+from src.baseproduct import BaseProduct
+from src.mixinlog import MixinLog
 
-class Product:
-    """Класс для представления продукта."""
+
+class Product(BaseProduct, MixinLog):
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
         """Инициализирует продукт с именем, описанием, ценой и количеством."""
@@ -10,6 +12,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __str__(self) -> str:
         """Возвращает строковое представление продукта."""
@@ -20,20 +23,7 @@ class Product:
         if issubclass(type(other), type(self)):
             return self.__price * self.quantity + other.__price * other.quantity
         else:
-            raise TypeError
-
-    @classmethod
-    def new_product(cls, new_product: dict, product_list: list[Product] | None = None) -> Product:
-        """Создаёт новый продукт или обновляет количество и цену существующего."""
-        if product_list:
-            for product in product_list:
-                if product.name == new_product.get("name"):
-                    product.quantity += 1
-                    new_price = new_product.get("price")
-                    if new_price is not None:
-                        product.price = max(new_price, product.price)
-
-        return Product(**new_product)
+            raise TypeError("Складывать можно только объекты класса Product")
 
     @property
     def price(self) -> float:
@@ -52,3 +42,20 @@ class Product:
                 self.__price = new_value
         else:
             self.__price = new_value
+
+    @classmethod
+    def new_product(cls, new_product: dict, product_list: list | None = None) -> Product:
+        """Создаёт новый продукт или обновляет количество и цену существующего."""
+        if product_list:
+            for product in product_list:
+                if product.name == new_product.get("name"):
+                    product.quantity += 1
+                    new_price = new_product.get("price")
+                    if new_price is not None:
+                        product.price = max(new_price, product.price)
+
+        return Product(**new_product)
+
+
+if __name__ == "__main__":
+    Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 1)
