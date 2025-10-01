@@ -24,8 +24,11 @@ class Category:
 
     def add_product(self, product: Product) -> None:
         if issubclass(type(product), (Product, Smartphone, LawnGrass)):
-            self.__products.append(product)
-            Category.product_count += 1
+            if product.quantity <= 0:
+                raise ZeroProductError("Нельзя добавлять товар с нулевым количеством")
+            else:
+                self.__products.append(product)
+                Category.product_count += 1
         else:
             raise TypeError
 
@@ -42,3 +45,11 @@ class Category:
             return round(total_price / self.product_count, 2)
         except ZeroDivisionError:
             return 0
+
+
+class ZeroProductError(Exception):
+    def __init__(self, *args, **kwargs):
+        self.message = args[0] if args else "Нельзя добавлять товар с нулевым количеством"
+
+    def __str__(self):
+        return self.message

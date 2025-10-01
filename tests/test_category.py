@@ -1,4 +1,6 @@
-from src.category import Category
+import pytest
+
+from src.category import Category, ZeroProductError
 from src.product import Product
 
 
@@ -34,3 +36,11 @@ def test_category_middle_price(product_phone: Product) -> None:
 
     category_empty = Category("Пустая категория", "Категория без продуктов", [])
     assert category_empty.middle_price() == 0
+
+
+def test_category_zero_product_error(category: Category) -> None:
+    product1 = Product("Товар без количества", "Тестовый товар", 500, 1)
+    product1.quantity = 0
+
+    with pytest.raises(ZeroProductError, match="Нельзя добавлять товар с нулевым количеством"):
+        category.add_product(product1)
