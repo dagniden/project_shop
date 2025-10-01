@@ -11,7 +11,11 @@ class Product(BaseProduct, MixinLog):
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
+        if quantity == 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+        else:
+            self.quantity = quantity
+
         super().__init__()
 
     def __str__(self) -> str:
@@ -55,7 +59,3 @@ class Product(BaseProduct, MixinLog):
                         product.price = max(new_price, product.price)
 
         return Product(**new_product)
-
-
-if __name__ == "__main__":
-    Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 1)

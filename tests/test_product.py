@@ -1,5 +1,7 @@
 from unittest.mock import patch
 
+import pytest
+
 from src.product import Product
 
 
@@ -50,3 +52,8 @@ def test_product_str(product_phone: Product) -> None:
 
 def test_product_add(product_phone: Product) -> None:
     assert (product_phone + product_phone) == 360000.0
+
+
+def test_category_zero_product_error() -> None:
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        product1 = Product("Товар без количества", "Тестовый товар", 500, 0)
