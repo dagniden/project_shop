@@ -39,7 +39,7 @@ class Category:
             result.append(str(item))
         return result
 
-    def middle_price(self):
+    def middle_price(self) -> float:
         total_price = sum([p.price for p in self.__products])
         try:
             return round(total_price / self.product_count, 2)
@@ -48,8 +48,8 @@ class Category:
 
 
 class ZeroProductError(Exception):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         self.message = args[0] if args else "Нельзя добавлять товар с нулевым количеством"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.message
